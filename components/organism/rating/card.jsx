@@ -69,10 +69,8 @@ export default function CardRating({ product }) {
   }, [totalRating]);
 
   return (
-    <div className=" w-full rounded-lg h-fit   flex overflow-hidden shadow">
-      <div className=" flex-none w-32  h-full bg-gray-500">
-        <Image src={fakeImage} />
-      </div>
+    <div className=" w-full rounded-lg    flex overflow-hidden shadow">
+      <div className=" flex-none w-32 h-28 bg-gray-500">{productDetail && <Image alt="" width={128} height={100} src={`http://malon.my.id:8888/api/seller/file/product/${productDetail?.image[0].filename}`} />}</div>
       {/* detail */}
       <div className="pr-3 pl-5 py-4 flex flex-col justify-center">
         {/* nama produk */}

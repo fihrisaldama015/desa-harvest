@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import back from "../../assets/svg/back.svg";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import Category from "../../components/atom/category";
@@ -19,7 +21,7 @@ import CardRating from "../../components/organism/rating/card";
 import { saveRating } from "../../store/alltransaction/alltransaction.action";
 import { deleteTransaction } from "../../store/alltransaction/alltransaction.action";
 import Swal from "sweetalert2";
-export default function Shop() {
+export default function RatingProduct() {
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -164,12 +166,19 @@ export default function Shop() {
         <div className="mt-4">
           <div className="w-full bg-white rounded-t-3xl min-h-screen h-fit relative">
             <div className=" py-4 px-7">
-              <div className="flex items-center mb-6">
-                <span className="mr-2">
-                  <Image src={shop} alt="tes" width={30} height={30} />
-                </span>
-                <p className=" text-[#618D80] text-2xl">{shopData?.name}</p>
+              {/*  */}
+              <div className="flex gap-6 items-center  mb-6">
+                <Link href="/notify">
+                  <Image src={back}></Image>
+                </Link>
+                <div className="flex items-center ">
+                  <span className="mr-2">
+                    <Image src={shop} alt="tes" width={30} height={30} />
+                  </span>
+                  <p className=" text-[#618D80] text-2xl">{shopData?.name}</p>
+                </div>
               </div>
+              {/*  */}
               <div className=" flex flex-col gap-3 relative">
                 {/* card */}
                 {transactionDetail?.transaction?.cart.map((prod, i) => (

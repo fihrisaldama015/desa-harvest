@@ -70,12 +70,18 @@ export default function Cart2() {
         <div className="mt-4">
           <div className=" w-full h-screen bg-white rounded-3xl">
             <div className="px-8 py-9 flex flex-col gap-4">
-              <p className=" text-2xl font-medium mb-7">Keranjang belanjaan anda</p>
               {/* title & seller*/}
               {/*  */}
-              {allCart.map((data, i) => {
-                return <StoreCart key={i} cartData={data} />;
-              })}
+              {allCart.length > 0 ? (
+                <>
+                  <p className=" text-2xl font-medium mb-7">Keranjang belanjaan anda</p>
+                  {allCart.map((data, i) => {
+                    return <StoreCart key={i} cartData={data} />;
+                  })}
+                </>
+              ) : (
+                <div className=" flex justify-center mt-8 text-2xl opacity-50">Keranjang anda kosong</div>
+              )}
 
               {/*  */}
             </div>

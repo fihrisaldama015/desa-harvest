@@ -42,3 +42,8 @@ export const deleteShopCart = (storeId, allCart) => {
   allCart = allCart.filter((c) => c._id_toko !== storeId);
   return (dispatch) => dispatch(cartsSave(allCart));
 };
+
+export const deleteCartByStore = (storeId, allCart) => {
+  allCart = allCart.filter((c) => c._id_toko != storeId);
+  return (dispatch) => dispatch(cartsSave(allCart));
+};

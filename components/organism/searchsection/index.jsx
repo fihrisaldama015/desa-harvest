@@ -14,7 +14,7 @@ export default function SearchSection({ func }) {
           type="search"
           id="default-search"
           className="block w-full h-10  p-4 indent-6  text-sm  text-gray-900 bg-gray-50 rounded-[60px] border border-gray-300 focus:ring-blue-500 focus:border-blue-500 darkdisable:bg-gray-700 darkdisable:border-gray-600 darkdisable:placeholder-gray-400 darkdisable:text-white darkdisable:focus:ring-blue-500 darkdisable:focus:border-blue-500 "
-          placeholder="Cari toko, sayur, buah"
+          placeholder="Cari sayur, buah, makanan dan lain-lain"
           required
           name="search"
           onChange={func}

@@ -37,7 +37,11 @@ export default function Product({ product }) {
         let avgStar = 0;
         if (allStar.length > 0) {
           totalStars = allStar.reduce((a, c) => a + c);
-          avgStar = Math.round(totalStars / allStar.length);
+          if (allStar[0] == 0 && allStar.length > 1) {
+            avgStar = Math.round(totalStars / (allStar.length - 1));
+          } else {
+            avgStar = Math.round(totalStars / allStar.length);
+          }
         }
         setRatingProd(avgStar);
       };
@@ -70,7 +74,7 @@ export default function Product({ product }) {
           </div>
         )}
         <div className="bg-gray-100 w-full  h-32 overflow-hidden  ">
-          <Image priority width={80} height={80} className=" w-full h-full object-cover" alt="" src={`http://malon.my.id:8888/api/seller/file/product/${productImage}`} />
+          <Image priority width={120} height={120} className=" w-full h-full object-cover" alt="" src={`http://malon.my.id:8888/api/seller/file/product/${productImage}`} />
         </div>
         {/* DETAIL*/}
         <div className="py-1 px-3 flex-col h-28 ">
