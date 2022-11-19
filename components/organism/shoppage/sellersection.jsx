@@ -14,7 +14,7 @@ export default function Sellersection() {
       <div className="mt-2">
         <div className=" flex justify-between">
           <button className=" w-24 h-7 bg-[#618D80] rounded-3xl ">
-            <Link href="/seller/login">
+            <Link href="/seller">
               <p className="text-xs text-white font-bold">Klik disini</p>
             </Link>
           </button>
