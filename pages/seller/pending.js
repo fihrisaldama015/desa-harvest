@@ -58,9 +58,9 @@ const Pending = () => {
           </div>
         ) : (
           <div className="h-full flex flex-col justify-center items-center">
-            <h className="mb-6 text-slate-800 text-2xl font-semibold text-center">
+            <h1 className="mb-6 text-slate-800 text-2xl font-semibold text-center">
               Pendaftaran Toko anda telah diterima !!
-            </h>
+            </h1>
             <div>
               <Link href="/seller/dashboard">
                 <p className="py-3 px-6 bg-mygreen_dark rounded-xl font-semibold text-white">

@@ -64,7 +64,7 @@ const Settings = () => {
       title: "Apakah Anda Yakin ingin Menghapus Toko Anda dan Semua datanya?",
       showDenyButton: true,
       confirmButtonText: "Ya, Hapus :(",
-      denyButtonText: `Jangan hapus, kembali :)`,
+      denyButtonText: `Jangan hapus Toko :)`,
     });
     if (result.isConfirmed) {
       try {
@@ -72,9 +72,10 @@ const Settings = () => {
           `http://malon.my.id:8888/api/seller/v1/shop/data/${dataToko.toko_id}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
-        console.log(data);
         Swal.fire("", data.message, "success");
-        router.push("/seller/createprofile");
+        cookieCutter.set("token", "", { expires: new Date(0) });
+        cookieCutter.set("toko_id", "", { expires: new Date(0) });
+        router.push("/seller/login");
       } catch (error) {
         Swal.fire("Error", error.response.statusText, "error");
       }
