@@ -19,9 +19,16 @@ const Createprofile = () => {
 
   useEffect(() => {
     (async () => {
-      const toko_id = cookieCutter.get("toko_id") || null;
-      if (toko_id) router.push("/seller/dashboard");
-      else router.push("/seller/pending");
+      const toko_id = cookieCutter.get("toko_id");
+      const token = cookieCutter.get("token") || null;
+      if (toko_id !== "null" && toko_id !== undefined) {
+        router.push("/seller/pending");
+        return;
+      }
+      if (!token) {
+        router.push("/seller/login");
+        return;
+      }
     })();
   });
 
@@ -57,7 +64,7 @@ const Createprofile = () => {
         "success"
       );
       cookieCutter.set("toko_id", `${data.data.toko_id}`);
-      if (result.isConfirmed) router.push("/seller/dashboard");
+      if (result.isConfirmed) router.push("/seller/pending");
     } catch (error) {
       console.log(error);
       Swal.fire("Oops", error.response.data.message, "error");
