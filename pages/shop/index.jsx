@@ -6,7 +6,7 @@ import CheckoutForm from "../../components/organism/checkoutform";
 import SearchSection from "../../components/organism/searchsection";
 import Sellersection from "../../components/organism/shoppage/sellersection";
 import { fetchProductsAsync } from "../../store/products/produtcs.action";
-import { selectProducts } from "../../store/products/products.selector";
+import { selectIsLoadingProducts, selectProducts } from "../../store/products/products.selector";
 import { selectFormVis } from "../../store/transaction/transaction.selector";
 export default function Shop() {
   const checkoutFormVis = useSelector(selectFormVis);
@@ -60,7 +60,8 @@ export default function Shop() {
     setSearchWord(e.target.value);
     setSelectedProducts(filterProducts());
   };
-
+  const productsIsLoading = useSelector(selectIsLoadingProducts);
+  const fakeArr = [1, 2, 3, 4, 5, 6, 7, 8];
   //
   return (
     <div className="flex justify-center ">
@@ -89,7 +90,35 @@ export default function Shop() {
         {/* product */}
         <div className="mt-4">
           <div className="w-full  bg-white rounded-t-3xl min-h-screen">
-            <div className="py-5  flex justify-evenly flex-wrap gap-5">{selectedProducts.length > 0 && selectedProducts.map((product, i) => <Product key={product.id_product} product={product} />)}</div>
+            <div className="py-5  flex justify-evenly flex-wrap gap-5">
+              {productsIsLoading &&
+                fakeArr.map((a, i) => {
+                  return (
+                    <div key={i} className=" h-60 w-40 bg-white shadow-md border rounded-3xl overflow-hidden flex-col relative hover:-translate-y-1 hover:translate-x-1 hover:transition-transform ">
+                      {/* Empty */}
+                      <div className="bg-gray-300 w-full  animate-pulse h-32 overflow-hidden  "></div>
+                      {/* DETAIL*/}
+                      <div className="py-2 px-3 flex-col h-28 ">
+                        <div className="">
+                          <p className=" text-[10px] text-[#618D80] bg-gray-300 animate-pulse rounded-3xl w-32 h-3"></p>
+                          <p className=" text-[10px] text-[#618D80] bg-gray-300 animate-pulse rounded-3xl w-12 h-3 mt-4"></p>
+                          <p className=" text-[10px] text-[#618D80] bg-gray-300 animate-pulse rounded-3xl w-20 h-3 mt-2"></p>
+                        </div>
+                        <div className="flex items-center absolute bottom-3 ">
+                          <p className=" text-[10px] text-[#618D80] bg-gray-300 animate-pulse rounded-3xl w-20 h-2 mt-2"></p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              {selectedProducts.length > 0 ? (
+                selectedProducts.map((product, i) => <Product key={product.id_product} product={product} />)
+              ) : (
+                <div className="py-8 flex items-center opacity-50 font-bold">
+                  <h1>Produk Tidak Tersedia</h1>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

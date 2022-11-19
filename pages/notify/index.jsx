@@ -44,11 +44,19 @@ export default function Notify() {
           <div className=" w-full min-h-screen bg-white  rounded-t-3xl ">
             <div className="px-8 py-9">
               {/* title */}
-              <div className=" mb-12  ">
-                <p className=" text-2xl font-medium ">Pemberitahuan</p>
-              </div>
               {/* list card */}
-              <div className="flex justify-center my-2 flex-col gap-4">{allTransactionId ? transactionrev.map((id, i) => <NotifyCard key={i} i={i + 1} id={id} />) : <></>}</div>
+              {allTransactionId.length > 0 ? (
+                <>
+                  <div className=" mb-12  ">
+                    <p className=" text-2xl font-medium ">Pemberitahuan</p>
+                  </div>
+                  <div className="flex justify-center my-2 flex-col gap-4">{allTransactionId ? transactionrev.map((id, i) => <NotifyCard key={i} i={i + 1} id={id} />) : <></>}</div>
+                </>
+              ) : (
+                <>
+                  <div className=" flex justify-center mt-8  opacity-50">Anda tidak memiliki pemberitahuan</div>
+                </>
+              )}
             </div>
           </div>
         </div>
