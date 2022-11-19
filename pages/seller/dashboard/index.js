@@ -24,6 +24,11 @@ const SellerDashboard = () => {
   const getDataToko = async () => {
     const toko_id = cookieCutter.get("toko_id");
     const token = cookieCutter.get("token");
+    if (toko_id === "null" || toko_id === undefined) {
+      router.push("/seller/createprofile");
+      return;
+    }
+
     let image_profile;
     try {
       if (toko_id === "null") throw "Belum Daftar Toko";
@@ -34,9 +39,12 @@ const SellerDashboard = () => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setDataToko(data);
+      if (data.status === 0) {
+        router.push("/seller/pending");
+        return;
+      }
       image_profile = data.image_profile;
     } catch (error) {
-      router.push("/seller/createprofile");
       console.log(error.response);
     }
     try {
